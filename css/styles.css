@@ -1,5 +1,24 @@
 .pokemon-button {
   color: #fff;
-  background-color: #0047AB;
+  background-color: #0047ab;
   border: 5px;
+  padding: 15px;
+  margin: 5px;
+}
+
+.pokemon-list {
+  list-style-type: none;
+}
+
+button:hover,
+button:focus,
+.button:hover,
+.button:focus {
+  /* lets the mouse appear as a hand when hovering over the button */
+  cursor: pointer;
+  /* reduces the opacity of the button to 80% */
+  opacity: 0.8;
+  color: #ccffff;
+  background-color: #0096ff;
+  color: #ccffff;
 }
