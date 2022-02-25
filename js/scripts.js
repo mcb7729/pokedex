@@ -93,15 +93,27 @@ let pokemonRepository = (function () {
       contentElement.innerText = "Height: " + height;
 
       let imageElement = document.createElement('img');
-      imageElement.classList.add('pokemon-img');
+      imageElement.id = "pokemonImage";
       imageElement.src = image;
+
+      let replacementImage = document.createElement('img');
+      replacementImage.id = "pokeball";
+      replacementImage.src = 'https://i.imgur.com/hi1EglF.gif';
+
+      let replacementMessage = document.createElement('p');
+      replacementMessage.id = "replacementMessage";
+      replacementMessage.innerText = "You have caught the Pokemon!";
 
       modal.appendChild(closeButtonElement);
       modal.appendChild(titleElement);
       modal.appendChild(contentElement);
       modal.appendChild(imageElement);
+      modal.appendChild(replacementImage);
+      modal.appendChild(replacementMessage);
       modalContainer.appendChild(modal);
       modalContainer.classList.add('is-visible');
+      imageElement.classList.add('is-visible');
+      imageElement.addEventListener('click', hideImage);
     }
 
     function hideModal() {
@@ -126,6 +138,15 @@ let pokemonRepository = (function () {
             hideModal();
         }
     });
+
+    function hideImage() {
+        let imageElement = document.querySelector('#pokemonImage');
+        imageElement.classList.remove('is-visible');
+        let replacementImage = document.querySelector('#pokeball');
+        replacementImage.classList.add('is-visible');
+        let replacementMessage = document.querySelector('#replacementMessage');
+        replacementMessage.classList.add('is-visible');
+    };
 
     return {
       add: add,
