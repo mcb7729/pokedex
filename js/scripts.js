@@ -26,17 +26,13 @@ let pokemonRepository = (function () {
       listItem.appendChild(button);
       list.appendChild(listItem);
       buttonEventListener(button, pokemon);
+      let buttonWrapper = document.querySelector('.button-wrapper');
+      buttonWrapper.appendChild(button);
     }
     //This should add event listener to each pokemon button
     function buttonEventListener(button, pokemon){
       button.addEventListener('click', function(){
         showDetails(pokemon);
-      });
-    }
-    //This should show pokemon details in console when clicked
-    function showDetails(pokemon) {
-      loadDetails(pokemon).then(function () {
-        console.log(pokemon);
       });
     }
 
@@ -70,6 +66,67 @@ let pokemonRepository = (function () {
       });
     }
 
+    //This should show pokemon details in console when clicked
+    function showDetails(pokemon) {
+      loadDetails(pokemon).then(function () {
+        console.log(pokemon);
+        showModal(pokemon.name, pokemon.height, pokemon.imageUrl);
+      });
+    }
+
+    function showModal(name, height, image) {
+      let modalContainer = document.querySelector('#modal-container');
+      modalContainer.innerHTML = '';
+      let modal = document.createElement('div');
+      modal.classList.add('modal');
+
+
+      let closeButtonElement = document.createElement('button');
+      closeButtonElement.classList.add('modal-close');
+      closeButtonElement.innerText = '[X]';
+      closeButtonElement.addEventListener('click', hideModal);
+
+      let titleElement = document.createElement('h1');
+      titleElement.innerText = name;
+
+      let contentElement = document.createElement('p');
+      contentElement.innerText = "Height: " + height;
+
+      let imageElement = document.createElement('img');
+      imageElement.classList.add('pokemon-img');
+      imageElement.src = image;
+
+      modal.appendChild(closeButtonElement);
+      modal.appendChild(titleElement);
+      modal.appendChild(contentElement);
+      modal.appendChild(imageElement);
+      modalContainer.appendChild(modal);
+      modalContainer.classList.add('is-visible');
+    }
+
+    function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
+    }
+
+    //Close the modal if the user presses the Escape key
+    let modalContainer = document.querySelector('#modal-container');
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+            hideModal();
+        }
+    });
+
+    //Close the modal if the user clicks anywhere outside of the modal
+    modalContainer.addEventListener('click', (e) => {
+        // Since this is also triggered when clicking INSIDE the modal
+        // We only want to close if the user clicks directly on the overlay
+        let target = e.target;
+        if (target === modalContainer) {
+            hideModal();
+        }
+    });
+
     return {
       add: add,
       getAll: getAll,
@@ -91,18 +148,18 @@ pokemonRepository.loadList().then(function() {
 //This is a test to see if non-pokemon can be added
 // pokemonRepository.add('Cow');
 
-Object.keys(pokemonRepository).forEach(function(property) {
-console.log(pokemonRepository[property]);
-});
-
-pokemonRepository.getAll().forEach(function (pokemon) {
-  pokemonRepository.addListItem(pokemon);
-});
-
-fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {
-  return response.json(); // This returns a promise!
-}).then(function (pokemonList) {
-  console.log(pokemonList); // The actual JSON response
-}).catch(function () {
-  // Error
-});
+// Object.keys(pokemonRepository).forEach(function(property) {
+// console.log(pokemonRepository[property]);
+// });
+//
+// pokemonRepository.getAll().forEach(function (pokemon) {
+//   pokemonRepository.addListItem(pokemon);
+// });
+//
+// fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {
+//   return response.json(); // This returns a promise!
+// }).then(function (pokemonList) {
+//   console.log(pokemonList); // The actual JSON response
+// }).catch(function () {
+//   // Error
+// });
