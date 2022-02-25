@@ -76,7 +76,8 @@ button:focus,
   box-sizing: border-box;
   background: #000;
   padding: 15px;
-  width: 100%;
+  width: 700px;
+  height: 400px;
   max-width: 700px;
   text-align: center;
   font-family: 'VT323', monospace;
@@ -119,7 +120,31 @@ button:focus,
   display: block;
 }
 
-.pokemon-img {
+#pokemonImage {
+  display: none;
+}
+
+#pokemonImage.is-visible {
+  display: block;
+  margin: 50px auto;
+}
+
+#pokeball {
+  display: none;
+}
+
+#pokeball.is-visible {
   display: block;
   margin: 0 auto;
+}
+
+#replacementMessage {
+  display: none;
+}
+
+#replacementMessage.is-visible {
+  display: block;
+  color: red;
+  font-family: 'VT323', monospace;
+  font-size: 24px;
 }
