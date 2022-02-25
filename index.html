@@ -3,12 +3,21 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Simple JS App</title>
+    <title>Pokedex</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   </head>
   <body>
-    <ul class = "pokemon-list"></ul>
-    <script src="js/promise-polyfill.js"></script>
-    <script src="js/scripts.js"></script>
+    <header>
+      <img id="header-image" alt="Pokemon" src="https://cdn.freebiesupply.com/images/large/2x/pokemon-logo-black-transparent.png"></img>
+    </header>
+      <ul class = "pokemon-list"></ul>
+      <div id="modal-container"></div>
+      <div class = "button-wrapper"></div>
+      <div id="image-container"></div>
+      <script src="js/promise-polyfill.js"></script>
+      <script src="js/scripts.js"></script>
   </body>
 </html>
