@@ -83,7 +83,6 @@ button:focus,
   font-family: 'VT323', monospace;
   color: #fff;
   border: 5px solid #fff;
-  cursor: url(https://i.imgur.com/9PmuXV6.png), auto;
 }
 
 .modal-close {
@@ -129,6 +128,10 @@ button:focus,
   margin: 50px auto;
 }
 
+#pokemonImage.is-visible:hover {
+  cursor: url(https://i.imgur.com/9PmuXV6.png), auto;
+}
+
 #pokeball {
   display: none;
 }
@@ -144,7 +147,7 @@ button:focus,
 
 #replacementMessage.is-visible {
   display: block;
-  color: red;
+  color: #fff;
   font-family: 'VT323', monospace;
   font-size: 24px;
 }
