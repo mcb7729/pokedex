@@ -20,15 +20,13 @@ body {
   margin-right: auto;
 }
 
-.pokemon-button {
-  color: #fff;
-  background-color: #000;
+.btn-primary {
+  color: #000;
+  background-color: #fff;
   border: 1px;
   padding: 10px;
   margin: 2px;
-  font-family: 'VT323', monospace;
-  font-size: 36px;
-  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .pokemon-list {
@@ -80,7 +78,6 @@ button:focus,
   height: 400px;
   max-width: 700px;
   text-align: center;
-  font-family: 'VT323', monospace;
   color: #fff;
   border: 5px solid #fff;
 }
@@ -92,7 +89,6 @@ button:focus,
   background: none;
   color: #000;
   background-color: #fff;
-  font-family: 'VT323', monospace;
   font-size: 18px;
   padding: 5px;
 }
@@ -148,6 +144,5 @@ button:focus,
 #replacementMessage.is-visible {
   display: block;
   color: #fff;
-  font-family: 'VT323', monospace;
   font-size: 24px;
 }
