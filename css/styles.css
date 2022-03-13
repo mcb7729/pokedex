@@ -1,3 +1,8 @@
+h1 {
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
+}
+
 body {
   background-color: #000;
 }
@@ -8,6 +13,10 @@ body {
   max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+}
+
+#navbar-image {
+  width: 10%
 }
 
 .button-wrapper {
@@ -26,7 +35,9 @@ body {
   border: 1px;
   padding: 10px;
   margin: 2px;
-  font-size: 18px;
+  font-size: 36px;
+  font-family: 'VT323', monospace;
+  text-transform: uppercase;
 }
 
 .pokemon-list {
@@ -35,84 +46,43 @@ body {
 
 button:hover,
 button:focus,
-.button:hover,
-.button:focus {
-  /* lets the mouse appear as a hand when hovering over the button */
-  cursor: pointer;
-  /* reduces the opacity of the button to 80% */
+.btn-primary:hover,
+.btn-primary:focus {
   opacity: 1.0;
   color: #000;
   background-color: #fff;
   transform: scale(1.2);
   box-shadow: 1px 5px 30px 1px rgba(255, 255, 255, 1.0);
+  cursor: url(https://i.imgur.com/9PmuXV6.png), auto;
 }
 
-#modal-container {
-  position: fixed;
-  padding: 80px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* show the modal above other content */
-  z-index: 999;
-
-  /* allow scrolling if the screen is not high enough */
-  overflow: auto;
-
-  /* center the modal */
-  display: grid;
-  text-align: center;
+.pokemon-modal-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #000;
-  padding: 15px;
-  width: 700px;
-  height: 400px;
-  max-width: 700px;
-  text-align: center;
-  color: #fff;
-  border: 5px solid #fff;
-}
-
-.modal-close {
-  float: right;
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
-  color: #000;
-  background-color: #fff;
-  font-size: 18px;
-  padding: 5px;
-}
-
-.modal h1 {
+.modal-header {
   margin-top: 0;
   text-align: left;
   display: block;
   color: #000;
   background-color: #fff;
   padding-left: 10px;
+  font-family: 'VT323', monospace;
+}
+
+.close {
+  padding: 0;
+  top: 0;
+  float: right;
+  margin: 0;
 }
 
 .modal p {
   margin-bottom: 20px;
   text-align: center;
-}
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  display: block;
 }
 
 #pokemonImage {
