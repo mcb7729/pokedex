@@ -63,6 +63,7 @@ let pokemonRepository = (function () {
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
         item.types = details.types;
+        item.weight = details.weight;
       }).catch(function (e) {
         console.error(e);
       });
@@ -78,6 +79,7 @@ let pokemonRepository = (function () {
       // showModal function
       let modalTitle = $('.modal-title'); // modalTitle
       let modalBody = $('.modal-body'); // modalBody
+      let modalWindow = $("#modalWindow").modal('show');
       // let modalHeader = $(".modal-header"); // no header so removed
 
       let pokemonName = $('<h2>' + item.name + '</h2>');
@@ -86,10 +88,8 @@ let pokemonRepository = (function () {
 
       let pokemonWeight = $('<p>' + 'Weight: ' + item.weight + '</p>');
 
-      let pokemonAbilities = $('<p>' + 'Abilities: ' + item.abilities + '</p>');
-
       let pokemonImage = $('<img class=\'pokemon-modal-image\'>');
-      pokemonImage.attr('src', item.imageUrl); // pokemon image attribute loaded from 'item.imageUrl'
+      pokemonImage.attr('src', item.imageUrl); // pokemon image attribute loaded from 'item.imageUrl
 
       modalTitle.empty(); // clears the modalTitle after display
       modalBody.empty(); // clears the modalBody after display
@@ -98,7 +98,11 @@ let pokemonRepository = (function () {
       modalBody.append(pokemonImage); // pokemonImage is displayed in the body of the modal
       modalBody.append(pokemonHeight); // pokemonHeight is displayed in the body of the modal
       modalBody.append(pokemonWeight); // pokemonWeight is displayed in the body of the modal
-      modalBody.append(pokemonAbilities); // pokemonDetails are displayed in the body of the modal
+      // Below is an attempt to hide pokemon image upon click so that it can later be replaced by gif of bouncing pokeball. I had it working previously, but can't get it to work with bootstrap
+      pokemonImage.addEventListener('click', function hidePokemonImage() {
+        pokemonImage.classList.add('is-hidden');
+      });
+
     }
 
     return {
@@ -110,78 +114,6 @@ let pokemonRepository = (function () {
     showDetails: showDetails
     };
 
-    //This should show pokemon details in console when clicked
-    // function showDetails(pokemon) {
-    //   loadDetails(pokemon).then(function () {
-    //     console.log(pokemon);
-    //     showModal(pokemon.name, pokemon.height, pokemon.imageUrl);
-    //   });
-    // }
-
-    // function showModal(name, height, image) {
-    //   let modalContainer = document.querySelector('#modal-container');
-    //   modalContainer.innerHTML = '';
-    //   let modal = document.createElement('div');
-    //   modal.classList.add('modal');
-    //
-    //
-    //   let closeButtonElement = document.createElement('button');
-    //   closeButtonElement.classList.add('modal-close');
-    //   closeButtonElement.innerText = '[X]';
-    //   closeButtonElement.addEventListener('click', hideModal);
-    //
-    //   let titleElement = document.createElement('h1');
-    //   titleElement.innerText = name;
-    //
-    //   let contentElement = document.createElement('p');
-    //   contentElement.innerText = "Height: " + height;
-    //
-    //   let imageElement = document.createElement('img');
-    //   imageElement.id = "pokemonImage";
-    //   imageElement.src = image;
-    //
-    //   let replacementImage = document.createElement('img');
-    //   replacementImage.id = "pokeball";
-    //   replacementImage.src = 'https://i.imgur.com/hi1EglF.gif';
-    //
-    //   let replacementMessage = document.createElement('p');
-    //   replacementMessage.id = "replacementMessage";
-    //   replacementMessage.innerText = "You have caught the Pokemon!";
-    //
-    //   // modal.appendChild(closeButtonElement);
-    //   modal.appendChild(titleElement);
-    //   modal.appendChild(contentElement);
-    //   modal.appendChild(imageElement);
-    //   modal.appendChild(replacementImage);
-    //   modal.appendChild(replacementMessage);
-    //   modalContainer.appendChild(modal);
-    //   modalContainer.classList.add('is-visible');
-    //   imageElement.classList.add('is-visible');
-    //   imageElement.addEventListener('click', hideImage);
-    // }
-
-    function hideModal() {
-        let modalContainer = document.querySelector('#modal-container');
-        modalContainer.classList.remove('is-visible');
-    }
-
-    //Close the modal if the user presses the Escape key
-    let modalContainer = document.querySelector('#modal-container');
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
-
-    //Close the modal if the user clicks anywhere outside of the modal
-    modalContainer.addEventListener('click', (e) => {
-        // Since this is also triggered when clicking INSIDE the modal
-        // We only want to close if the user clicks directly on the overlay
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
 
     function hideImage() {
         let imageElement = document.querySelector('#pokemonImage');
@@ -192,14 +124,6 @@ let pokemonRepository = (function () {
         replacementMessage.classList.add('is-visible');
     };
 
-    // return {
-    //   add: add,
-    //   getAll: getAll,
-    //   addListItem: addListItem,
-    //   loadList: loadList,
-    //   loadDetails: loadDetails
-    // };
-
 })();
 
 pokemonRepository.loadList().then(function() {
@@ -208,23 +132,3 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
-
-// pokemonRepository.add({name: 'Pikachu', height: 5, type: "electric"});
-//This is a test to see if non-pokemon can be added
-// pokemonRepository.add('Cow');
-
-// Object.keys(pokemonRepository).forEach(function(property) {
-// console.log(pokemonRepository[property]);
-// });
-//
-// pokemonRepository.getAll().forEach(function (pokemon) {
-//   pokemonRepository.addListItem(pokemon);
-// });
-//
-// fetch('https://pokeapi.co/api/v2/pokemon/').then(function (response) {
-//   return response.json(); // This returns a promise!
-// }).then(function (pokemonList) {
-//   console.log(pokemonList); // The actual JSON response
-// }).catch(function () {
-//   // Error
-// });
