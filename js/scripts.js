@@ -80,9 +80,8 @@ let pokemonRepository = (function () {
       let modalTitle = $('.modal-title'); // modalTitle
       let modalBody = $('.modal-body'); // modalBody
       let modalWindow = $("#modalWindow").modal('show');
-      // let modalHeader = $(".modal-header"); // no header so removed
 
-      let pokemonName = $('<h2>' + item.name + '</h2>');
+      let pokemonName = $('<h1>' + item.name + '</h1>');
 
       let pokemonHeight = $('<p>' + 'Height: ' + item.height + '</p>');
 
@@ -91,17 +90,15 @@ let pokemonRepository = (function () {
       let pokemonImage = $('<img class=\'pokemon-modal-image\'>');
       pokemonImage.attr('src', item.imageUrl); // pokemon image attribute loaded from 'item.imageUrl
 
+
       modalTitle.empty(); // clears the modalTitle after display
       modalBody.empty(); // clears the modalBody after display
+
 
       modalTitle.append(pokemonName); // pokemonName is displayed as the title in the modal
       modalBody.append(pokemonImage); // pokemonImage is displayed in the body of the modal
       modalBody.append(pokemonHeight); // pokemonHeight is displayed in the body of the modal
       modalBody.append(pokemonWeight); // pokemonWeight is displayed in the body of the modal
-      // Below is an attempt to hide pokemon image upon click so that it can later be replaced by gif of bouncing pokeball. I had it working previously, but can't get it to work with bootstrap
-      pokemonImage.addEventListener('click', function hidePokemonImage() {
-        pokemonImage.classList.add('is-hidden');
-      });
 
     }
 
@@ -112,16 +109,6 @@ let pokemonRepository = (function () {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails
-    };
-
-
-    function hideImage() {
-        let imageElement = document.querySelector('#pokemonImage');
-        imageElement.classList.remove('is-visible');
-        let replacementImage = document.querySelector('#pokeball');
-        replacementImage.classList.add('is-visible');
-        let replacementMessage = document.querySelector('#replacementMessage');
-        replacementMessage.classList.add('is-visible');
     };
 
 })();
